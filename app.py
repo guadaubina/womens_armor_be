@@ -10,11 +10,17 @@ app = Flask(__name__)
 CORS(app)
 
 
+@app.route('/')
+def hello():
+    return "hello"
+
+
 @app.route('/forms', methods=['POST'])
 def new_consulta():
     req_json = request.json
+    print(req_json)
 
-    consulta_id = random.randint(100, 10000)
+    consulta_id = random.randint(1000, 10000000)
     req_json["consulta_id"] = consulta_id
     save_new_consulta(req_json)
 
@@ -29,5 +35,4 @@ def show_consultas():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
-
+    app.run()
